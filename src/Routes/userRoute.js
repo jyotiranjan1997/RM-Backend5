@@ -21,13 +21,8 @@ userRoute.post("/", async (req, res) => {
   const { name, score } = req.body;
 
   try {
-    let user = await User.findOne({ name });
-    if (user) {
-      res.status(200).send({ msg: "username already present !",user });
-    } else {
     let user_data=  await User.create({ name, score });
       res.status(200).send({ msg: "username successfully added !",user:user_data });
-    }
   } catch (err) {
     res.status(500).send({ msg: " failed !" });
   }
